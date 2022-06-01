@@ -12,8 +12,7 @@ function Tirage() {
         const value = Object.keys(cartes);
         const randIndex = Math.floor(Math.random() * value.length)
         const randKey = value[randIndex]
-        const name = cartes[randKey]
-        setRandom(name)
+        setRandom(cartes[randKey])
     }
     
     const fetchCarte = async () => {

@@ -1,4 +1,10 @@
-.logo{
-  display: flex;
-  justify-content: center;
+* {
+  padding: 0px;
+  margin: 0px;
+}
+
+.overlay {
+  background: rgba(50, 70, 80, 0.7);
+  overflow: hidden;
+  height: 100%;
 }
