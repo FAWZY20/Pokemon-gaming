@@ -11,7 +11,7 @@ function Tirage() {
     const [random, setRandom] = useState([])
 
     // Timer
-    const [seconds, setSeconds] = useState(0);
+    const [seconds, setSeconds] = useState(15);
     const [isActive, setIsActive] = useState(false);
 
     const fetchrandom = () => {
@@ -29,25 +29,21 @@ function Tirage() {
         fetchrandom()
     }
 
-    useEffect(() => {
-        fetchCarte()
-    }, [])
-
-
-    function toggle() {
+    const toggle = () => {
         setIsActive(!isActive);
     }
 
-    function reset() {
-        setSeconds(0);
+    const reset = () => {
+        setSeconds(15);
         setIsActive(false);
     }
 
     useEffect(() => {
         let interval = null;
+        if(seconds == 0) reset();
         if (isActive) {
             interval = setInterval(() => {
-                setSeconds(seconds => seconds + 1);
+                setSeconds(seconds => seconds - 1);
             }, 500);
         } else if (!isActive && seconds !== 0) {
             clearInterval(interval);
@@ -55,6 +51,10 @@ function Tirage() {
         return () => clearInterval(interval);
     }, [isActive, seconds]);
 
+    useEffect(() => {
+        fetchCarte()
+    }, [])
+    
     return (
         <div className='container-fluid' >
             <div className='container' >
@@ -72,7 +72,7 @@ function Tirage() {
                             <Button className="btn-lancer" variant="warning" onClick={toggle} >Lancer</Button>
                         </div>
                         <div>
-                            <Button className="btn-stop" variant="warning">Stop ( {seconds}s )</Button>
+                            <Button className="btn-stop" variant="warning" onClick={reset} >Stop ( {seconds}s )</Button>
                         </div>
                     </div>
                 </div>
