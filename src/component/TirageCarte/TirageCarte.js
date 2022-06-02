@@ -16,35 +16,37 @@ function Tirage() {
 
     const fetchrandom = () => {
         const keys = Object.keys(cartes);
-        const randIndex = Math.floor(Math.random() * keys.length)
+        const randIndex = Math.floor(Math.random() * 11)
         const randKey = keys[randIndex]
+        console.log('carte :', cartes[randKey]);
         setRandom(cartes[randKey])
-        console.log(cartes[randIndex]);
-
     }
 
     const fetchCarte = async () => {
         const { data } = await api.get()
         setCarte(data.pokemons)
-        fetchrandom()
     }
 
     useEffect(() => {
         fetchCarte()
     }, [])
-    
+
+    useEffect(() => {
+        fetchrandom()
+    }, [cartes])
+
     const toggle = () => {
+        setSeconds(15);
         setIsActive(!isActive);
     }
 
-    const reset = () => {
-        setSeconds(15);
+    const stop = () => {
         setIsActive(false);
     }
 
     useEffect(() => {
         let interval = null;
-        if(seconds == 0) reset();
+        if (seconds == 0) stop();
         if (isActive) {
             interval = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
@@ -55,6 +57,7 @@ function Tirage() {
         return () => clearInterval(interval);
     }, [isActive, seconds]);
 
+
     return (
         <div className='container-fluid' >
             <div className='container' >
@@ -62,17 +65,27 @@ function Tirage() {
                     <div className='logo' >
                         <img src={logo} heigh="139" width="375" alt='' />
                     </div>
-                    <div className="carteTirage">
-                        {
-
-                        }
-                    </div>
+                    {random && (
+                        <div className="carteTirage">
+                            <div className="info-principal" >
+                                <div>
+                                    <p>{random.name}</p>
+                                </div>
+                                <div>
+                                    <p><span className="niveau" >NV</span> {random.level}<span><img src={random.abilities} /></span></p>
+                                </div>
+                            </div>
+                            <div className="image" >
+                                <img src={random.image} heigh="200" width="200" alt="" />
+                            </div>
+                        </div>
+                    )}
                     <div className="button-block" >
                         <div>
                             <Button className="btn-lancer" variant="warning" onClick={toggle} >Lancer</Button>
                         </div>
                         <div>
-                            <Button className="btn-stop" variant="warning" onClick={reset} >Stop ( {seconds}s )</Button>
+                            <Button className="btn-stop" variant="warning" onClick={stop} >Stop ( {seconds}s )</Button>
                         </div>
                     </div>
                 </div>
