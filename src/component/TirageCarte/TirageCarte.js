@@ -50,7 +50,7 @@ function Tirage() {
         if (isActive) {
             interval = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
-            }, 500);
+            }, 1000);
             fetchrandom()
         } else if (!isActive && seconds !== 0) {
             clearInterval(interval);
