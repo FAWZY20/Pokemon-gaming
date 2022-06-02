@@ -51,6 +51,7 @@ function Tirage() {
             interval = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
             }, 500);
+            fetchrandom()
         } else if (!isActive && seconds !== 0) {
             clearInterval(interval);
         }
@@ -66,13 +67,13 @@ function Tirage() {
                         <img src={logo} heigh="139" width="375" alt='' />
                     </div>
                     {random && (
-                        <div className="carteTirage">
+                        <div className="carteTirage" style={{backgroundColor: `${random.background_color}` }} >
                             <div className="info-principal" >
                                 <div>
                                     <p>{random.name}</p>
                                 </div>
                                 <div>
-                                    <p><span className="niveau" >NV</span> {random.level}<span><img src={random.abilities} /></span></p>
+                                    <p><span className="niveau" >NV</span> {random.level}<span><img src={random.background_color} /></span></p>
                                 </div>
                             </div>
                             <div className="image" >
