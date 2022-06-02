@@ -6,14 +6,19 @@ import { Button } from "react-bootstrap";
 
 function Tirage() {
 
+    // carte aleatoir
     const [cartes, setCarte] = useState([])
     const [random, setRandom] = useState([])
+
+    // Timer
+    const [seconds, setSeconds] = useState(0);
+    const [isActive, setIsActive] = useState(false);
 
     const fetchrandom = () => {
         const keys = Object.keys(cartes);
         const randIndex = Math.floor(Math.random() * keys.length)
         const randKey = keys[randIndex]
-        setRandom( cartes[randKey])
+        setRandom(cartes[randKey])
         console.log(cartes[randIndex]);
 
     }
@@ -28,7 +33,27 @@ function Tirage() {
         fetchCarte()
     }, [])
 
-    console.log();
+
+    function toggle() {
+        setIsActive(!isActive);
+    }
+
+    function reset() {
+        setSeconds(0);
+        setIsActive(false);
+    }
+
+    useEffect(() => {
+        let interval = null;
+        if (isActive) {
+            interval = setInterval(() => {
+                setSeconds(seconds => seconds + 1);
+            }, 500);
+        } else if (!isActive && seconds !== 0) {
+            clearInterval(interval);
+        }
+        return () => clearInterval(interval);
+    }, [isActive, seconds]);
 
     return (
         <div className='container-fluid' >
@@ -44,10 +69,10 @@ function Tirage() {
                     </div>
                     <div className="button-block" >
                         <div>
-                            <Button className="btn-lancer" variant="warning">Lancer</Button>
+                            <Button className="btn-lancer" variant="warning" onClick={toggle} >Lancer</Button>
                         </div>
                         <div>
-                            <Button className="btn-stop" variant="warning">Stop</Button>
+                            <Button className="btn-stop" variant="warning">Stop ( {seconds}s )</Button>
                         </div>
                     </div>
                 </div>
