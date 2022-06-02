@@ -29,6 +29,10 @@ function Tirage() {
         fetchrandom()
     }
 
+    useEffect(() => {
+        fetchCarte()
+    }, [])
+    
     const toggle = () => {
         setIsActive(!isActive);
     }
@@ -51,10 +55,6 @@ function Tirage() {
         return () => clearInterval(interval);
     }, [isActive, seconds]);
 
-    useEffect(() => {
-        fetchCarte()
-    }, [])
-    
     return (
         <div className='container-fluid' >
             <div className='container' >
