@@ -8,7 +8,30 @@
 .carteTirage {
     width: 300px;
     height: 417px;
+    margin-top: 3%;
+    margin-bottom: 1%;
     background-color: #A1E3FF;
     border: 4px solid #FFE557;
     border-radius: 10px;
+}
+
+.btn-lancer, .btn-stop {
+    box-shadow: 1px 1px 12px rgb(0, 0, 0);
+    margin: 3%;
+    margin-bottom: 4.5%;
+    font-size: 20px;
+    font-weight: bold;
+    width: 310px;
+    height: 54px;
+    border-radius: 10px;
+}
+
+.btn-lancer {
+    background-color: yellow;
+    border-color: yellow;
+}
+
+.btn-stop {
+    background-color: #CB5252;
+    border-color: #CB5252;
 }
