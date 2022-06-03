@@ -9,17 +9,20 @@ function Tirage() {
     // carte aleatoir
     const [cartes, setCarte] = useState([])
     const [random, setRandom] = useState([])
+    const [caracteristique, setcaracteristique] = useState([])
 
     // Timer
     const [seconds, setSeconds] = useState(15);
     const [isActive, setIsActive] = useState(false);
 
     const fetchrandom = () => {
-        const keys = Object.keys(cartes);
-        const randIndex = Math.floor(Math.random() * 11)
-        const randKey = keys[randIndex]
-        console.log('carte :', cartes[randKey]);
-        setRandom(cartes[randKey])
+        if(cartes.length > 0) {
+
+            const keys = Object.keys(cartes);
+            const randIndex = Math.floor(Math.random() * keys.length)
+            const randKey = keys[randIndex]
+            console.log('random :',random)
+        }
     }
 
     const fetchCarte = async () => {
@@ -50,7 +53,7 @@ function Tirage() {
         if (isActive) {
             interval = setInterval(() => {
                 setSeconds(seconds => seconds - 1);
-            }, 1000);
+            }, 800);
             fetchrandom()
         } else if (!isActive && seconds !== 0) {
             clearInterval(interval);
@@ -67,13 +70,13 @@ function Tirage() {
                         <img src={logo} heigh="139" width="375" alt='' />
                     </div>
                     {random && (
-                        <div className="carteTirage" style={{backgroundColor: `${random.background_color}` }} >
+                        <div className="carteTirage" style={{ backgroundColor: `${random.background_color}` }} >
                             <div className="info-principal" >
                                 <div>
                                     <p>{random.name}</p>
                                 </div>
                                 <div>
-                                    <p><span className="niveau" >NV</span> {random.level}<span><img src={random.background_color} /></span></p>
+                                    <p><span className="niveau" >NV</span> {random.level} {random.abilities && (random.abilities.map((test) => (<span>{test.icon}</span>)))}</p>
                                 </div>
                             </div>
                             <div className="image" >
