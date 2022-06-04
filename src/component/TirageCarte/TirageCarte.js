@@ -6,28 +6,23 @@ import { Button } from "react-bootstrap";
 
 function Tirage() {
 
-    // carte aleatoir
     const [cartes, setCarte] = useState([])
     const [random, setRandom] = useState([])
-    const [caracteristique, setcaracteristique] = useState([])
 
-    // Timer
     const [seconds, setSeconds] = useState(15);
     const [isActive, setIsActive] = useState(false);
-
-    const fetchrandom = () => {
-        if(cartes.length > 0) {
-
-            const keys = Object.keys(cartes);
-            const randIndex = Math.floor(Math.random() * keys.length)
-            const randKey = keys[randIndex]
-            console.log('random :',random)
-        }
-    }
 
     const fetchCarte = async () => {
         const { data } = await api.get()
         setCarte(data.pokemons)
+    }
+
+    const fetchrandom = () => {
+        const keys = Object.keys(cartes);
+        const randIndex = Math.floor(Math.random() * keys.length)
+        const randKey = keys[randIndex]
+        console.log('carte :', cartes[randKey]);
+        setRandom(cartes[randKey])
     }
 
     useEffect(() => {
@@ -61,7 +56,6 @@ function Tirage() {
         return () => clearInterval(interval);
     }, [isActive, seconds]);
 
-
     return (
         <div className='container-fluid' >
             <div className='container' >
@@ -76,12 +70,18 @@ function Tirage() {
                                     <p>{random.name}</p>
                                 </div>
                                 <div>
-                                    <p><span className="niveau" >NV</span> {random.level} {random.abilities && (random.abilities.map((test) => (<span>{test.icon}</span>)))}</p>
+                                    <p><span className="niveau" >NV</span> {random.level} {random.abilities && (random.abilities.slice(0, 1).map((test) => (<span>{test.icon}</span>)))}</p>
                                 </div>
                             </div>
                             <div className="image" >
                                 <img src={random.image} heigh="200" width="200" alt="" />
                             </div>
+                            {random.abilities && (random.abilities.slice(0, 2).map((abilities) => (
+                                <div className="description" >
+                                    <p className="description-name" ><span className="description-icon" >{abilities.icon}</span> {abilities.name} </p>
+                                    <p className="description-info" >{abilities.description}</p>
+                                </div>
+                            )))}
                         </div>
                     )}
                     <div className="button-block" >

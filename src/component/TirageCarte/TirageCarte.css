@@ -7,7 +7,7 @@
 
 .carteTirage {
     width: 300px;
-    height: 380px;
+    height: 417px;
     margin-top: 2%;
     margin-bottom: 1%;
     background-color: #FFFFFF;
@@ -61,4 +61,21 @@
 
 .niveau{
     font-size: 8px;
+}
+
+.description{
+    margin: 10px;
+}
+
+.description-icon{
+    margin-right: 25px;
+}
+
+.description-name{
+    font-weight: bold;
+}
+
+.description-info{
+    margin-top: 10px;
+    font-size: 10px;
 }
