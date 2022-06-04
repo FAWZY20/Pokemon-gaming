@@ -8,6 +8,7 @@ function Tirage() {
 
     const [cartes, setCarte] = useState([])
     const [random, setRandom] = useState([])
+    const [favorites, setFavorites] = useState([]);;
 
     const [seconds, setSeconds] = useState(15);
     const [isActive, setIsActive] = useState(false);
@@ -19,8 +20,8 @@ function Tirage() {
 
     const fetchrandom = () => {
         const keys = Object.keys(cartes);
-        const randIndex = Math.floor(Math.random() * keys.length)
-        const randKey = keys[randIndex]
+        const randrandom = Math.floor(Math.random() * keys.length)
+        const randKey = keys[randrandom]
         console.log('carte :', cartes[randKey]);
         setRandom(cartes[randKey])
     }
@@ -40,6 +41,21 @@ function Tirage() {
 
     const stop = () => {
         setIsActive(false);
+    }
+
+    const addFavorites = () => {
+        favorites.push(random) // adds items to favorites array
+        cartes.splice(random, 1); // removes same item from myList
+
+        sessionStorage.setItem("favorites", JSON.stringify(favorites));
+
+        var storage = sessionStorage.getItem('favItem' + random || '0')
+        if (storage == null) {
+            sessionStorage.setItem(('favItem' + cartes[random], JSON.stringify(random) ));
+        }
+        else {
+            sessionStorage.removeItem('favItem' + random);
+        }
     }
 
     useEffect(() => {
@@ -64,7 +80,7 @@ function Tirage() {
                         <img src={logo} heigh="139" width="375" alt='' />
                     </div>
                     {random && (
-                        <div className="carteTirage" style={{ backgroundColor: `${random.background_color}` }} >
+                        <div className="carteTirage" style={{ backgroundColor: `${random.background_color}` }}  onClick={() => addFavorites(random)} >
                             <div className="info-principal" >
                                 <div>
                                     <p>{random.name}</p>
