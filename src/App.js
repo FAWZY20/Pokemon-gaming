@@ -1,4 +1,5 @@
 import './App.css';
+import Sauvegarde from './component/SauvegardeCarte/SauvegardeCarte';
 import Tirage from './component/TirageCarte/TirageCarte';
 
 function App() {
@@ -6,7 +7,8 @@ function App() {
     <div className="container-fluid overlay">
       <div className='container' >
         <div className='row'>
-          <Tirage/>
+          <Sauvegarde />
+          <Tirage />
         </div>
       </div>
     </div>

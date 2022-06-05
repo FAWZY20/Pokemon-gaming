@@ -1,5 +1,71 @@
-.carteSauvegarder{
-    width: 144px;
-    height: 193px;
+.carteSauvegarde {
+    width: 164px;
+    height: 300px;
     background-color: #FFFFFF;
+    border: 3px solid yellow;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    margin-right: 70px;
+}
+
+.carte {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.info-principal-svg {
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: bold;
+    font-size: 10px;
+    margin-bottom: 0px;
+
+}
+
+.niveau-svg{
+    font-size: 5px;
+}
+
+.image-svg{
+    background-image: url(../../asset/fond-carte.jpg);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+    margin: 4px;
+    width: 150px;
+    height: 90px;
+}
+
+.description-svg{
+    margin: 5px;
+}
+
+.description-name-svg{
+    font-weight: bold;
+    font-size: 10px;
+    margin-bottom: 1px;
+}
+
+.description-icon-svg{
+    margin-right: 25px;
+}
+
+.description-info-svg{
+    margin-top: 5px;
+    font-size: 5px;
+}
+
+.carteSauvegarde-cadre{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
 }
