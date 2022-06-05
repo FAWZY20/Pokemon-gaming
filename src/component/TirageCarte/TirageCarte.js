@@ -6,18 +6,27 @@ import { Button } from "react-bootstrap";
 
 function Tirage() {
 
+    //initialisation de la table cartes ou il y'aura tout les carte de l'API
+    //initialisation de la table random ou il y'aura la carte aleatoir du debut du jeu
+    //initialisation de la table favorites ou il y'aura tout les carte selectionner par le jouer
+    //initialisation des seconds a 15scd
+    //initialisation de du boolean active du chrono a false
     const [cartes, setCarte] = useState([])
     const [random, setRandom] = useState([])
     const [favorites, setFavorites] = useState([]);;
-    
     const [seconds, setSeconds] = useState(15);
     const [isActive, setIsActive] = useState(false);
 
+    // utilisation de l'api pour appeler les données et les integrer sur la constante Data
+    // qui serat utilisée pour la function setCarte afin de remplir le tableau carte
     const fetchCarte = async () => {
         const { data } = await api.get()
         setCarte(data.pokemons)
     }
 
+    //on appel les clée de tout les cartes
+    //on les fait tourner aléatoirement pour en sortir une
+    //on appel cette clée pour nous sortir la carte du debut
     const fetchrandom = () => {
         const keys = Object.keys(cartes);
         const randrandom = Math.floor(Math.random() * keys.length)
@@ -25,29 +34,35 @@ function Tirage() {
         setRandom(cartes[randKey])
     }
 
+
     useEffect(() => {
         fetchCarte()
     }, [])
 
+    //Quand la table cartes change on appel fetchrandom
     useEffect(() => {
         fetchrandom()
     }, [cartes])
 
+    const addFavorites = () => {
+        favorites.push(random) // ajout de l'item a la table favorie
+        cartes.splice(random, 1); // suprime les item choisi pour pas les reprendre
+        sessionStorage.setItem("favorites", JSON.stringify(favorites));// enregistrement dans la session actuel avec la clée facorites
+    }
+
+
+    //initialise le chrono a 15 et l'active
     const toggle = () => {
         setSeconds(15);
         setIsActive(!isActive);
     }
 
+    //permet de stoper le chrono en passant le bool a faux
     const stop = () => {
         setIsActive(false);
     }
 
-    const addFavorites = () => {
-        favorites.push(random) // adds items to favorites array
-        cartes.splice(random, 1); // removes same item from myList
-        sessionStorage.setItem("favorites", JSON.stringify(favorites));
-    }
-
+    // si le chrono et activer il serat d'une vitesse de 500ms et ferrat tourner les carte aleatoirement pendant 15 scd
     useEffect(() => {
         let interval = null;
         if (seconds == 0) stop();
@@ -61,6 +76,7 @@ function Tirage() {
         }
         return () => clearInterval(interval);
     }, [isActive, seconds]);
+
 
     return (
         <div className='tirage col-lg-4' >

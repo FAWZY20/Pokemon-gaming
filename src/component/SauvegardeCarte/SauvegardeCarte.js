@@ -3,9 +3,11 @@ import { useState, useEffect } from 'react';
 
 function Sauvegarde() {
 
+    //initialisation de la table ou il y'aura les carte selectionner
     const [sauvegarde, setSauvegarde] = useState([])
     const getArray = JSON.parse(sessionStorage.getItem('favorites'))
 
+    //affichage de la liste des carte si le tableau de la session actif et different de nul sinon supression de la session actuel
     const fetchSauvegarde = () => {
         if (getArray !== null) {
             setSauvegarde(getArray)
@@ -15,11 +17,11 @@ function Sauvegarde() {
         }
     }
 
+    //activation de la function fetchSauvegarde si le tableau sauvegarde change
     useEffect(()  => {
         fetchSauvegarde()
     }, [sauvegarde])
 
-    console.log(sauvegarde);
     return (
         <div className='carte col-lg-8' >
             <div className='carteSauvegarde-cadre' >
