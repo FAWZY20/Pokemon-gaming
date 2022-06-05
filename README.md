@@ -1,6 +1,6 @@
 # Test-technique-Pokmeon
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Pokémon gaming et une application web qui permet de réaliser une collection de 6 cartes qui serat tirait durant un chrono de 15 secondes qui peuvent être arrêté à tout moment pour tirer votre carte.
 
 ## Available Scripts
 
