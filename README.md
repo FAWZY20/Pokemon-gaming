@@ -1,6 +1,6 @@
 # Test-technique-Pokmeon
 
-Pokémon gaming et une application web qui permet de réaliser une collection de 6 cartes qui serat tirait durant un chrono de 15 secondes qui peuvent être arrêté à tout moment pour tirer votre carte.
+Pokémon gaming et une application web qui permet de réaliser une collection de 6 cartes qui serat tirait durant un chrono de 15 secondes qui pourrat être arrêté à tout moment pour tirer votre carte.
 
 ## Available Scripts
 
