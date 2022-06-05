@@ -79,7 +79,7 @@ function Tirage() {
 
 
     return (
-        <div className='tirage col-lg-4' >
+        <div className='tirage col-lg-4 col-sm-8' >
             <div className='logo' >
                 <img src={logo} heigh="139" width="375" alt='' />
             </div>

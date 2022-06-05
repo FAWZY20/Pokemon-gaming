@@ -23,7 +23,7 @@ function Sauvegarde() {
     }, [sauvegarde])
 
     return (
-        <div className='carte col-lg-8' >
+        <div className='carte col-lg-8 col-sm-8' >
             <div className='carteSauvegarde-cadre' >
                 {sauvegarde && (
                     sauvegarde.slice(0, 6).map((sauv) => (
