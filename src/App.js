@@ -4,9 +4,9 @@ import Tirage from './component/TirageCarte/TirageCarte';
 
 function App() {
   return (
-    <div className="container-fluid overlay">
+    <div className="container-fluid">
       <div className='container' >
-        <div className='row'>
+        <div className='row  overlay'>
           <Sauvegarde />
           <Tirage />
         </div>

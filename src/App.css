@@ -1,10 +1,9 @@
-* {
-  padding: 0px;
-  margin: 0px;
-}
 
-.overlay {
-  background: rgba(50, 70, 80, 0.7);
-  overflow: hidden;
-  height: 100%;
+@media screen and (max-width: 430px){
+  .overlay{
+    display: flex;
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items: center;
+  }
 }

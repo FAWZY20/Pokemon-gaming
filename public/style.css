@@ -1,7 +1,7 @@
-body{
+body {
     background-image: url(./img/fond-page.png);
-    background-position: bottom;
+    backdrop-filter: brightness(0.4);
+    background-position: center;
     background-size: cover;
     background-repeat: no-repeat;
-    
 }
