@@ -4,7 +4,7 @@ Pokémon gaming et une application web qui permet de réaliser une collection de
 
 ![alt text](https://github.com/FAWZY20/Test-technique-Pokmeon/blob/master/src/asset/pokemon-gaming.jpg?raw=true)
 
-<b>url :</b>https://pokemon-gaming.netlify.app/
+url : https://pokemon-gaming.netlify.app/
 
 ## Available Scripts
 
